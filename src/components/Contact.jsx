@@ -273,8 +273,8 @@ export default function Contact() {
                   title: "Address",
                   text: "Harjas Hostel, Near UPES Campus,\nBidholi, Dehradun, Uttarakhand — 248007",
                 },
-                { icon: Phone, title: "Phone", text: "+91 XXXXX XXXXX" },
-                { icon: Mail, title: "Email", text: "info@harjashostel.com" },
+                { icon: Phone, title: "Phone", text: "+91 94117 17651" },
+                { icon: Mail, title: "Email", text: "saravjeetsangeeta@gmail.com" },
                 {
                   icon: Clock,
                   title: "Visiting Hours",
