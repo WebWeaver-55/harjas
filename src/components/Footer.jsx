@@ -44,16 +44,16 @@ const quickLinks = [
 const roomLinks = [
   { name: 'Boys Hostel', id: 'rooms' },
   { name: 'Girls Hostel', id: 'rooms' },
-  { name: 'Single Room', id: 'rooms' },
-  { name: 'Twin Sharing', id: 'rooms' },
-  { name: 'Triple Sharing', id: 'rooms' },
+  { name: 'PGs', id: 'rooms' },
+  { name: 'Flats', id: 'rooms' },
+ 
 ];
 
 const socialLinks = [
   { icon: InstagramIcon, href: '#', label: 'Instagram' },
   { icon: FacebookIcon, href: '#', label: 'Facebook' },
   { icon: YoutubeIcon, href: '#', label: 'YouTube' },
-  { icon: MessageCircle, href: 'https://wa.me/91XXXXXXXXXX', label: 'WhatsApp' },
+  { icon: MessageCircle, href: 'https://wa.me/+917983366239', label: 'WhatsApp' },
 ];
 
 export default function Footer() {
@@ -144,11 +144,11 @@ export default function Footer() {
             <ul className="space-y-3.5">
               <li className="flex items-start gap-2.5">
                 <span className="text-base leading-none mt-0.5">📞</span>
-                <span className="text-white/40 text-sm">+91 XXXXX XXXXX</span>
+                <span className="text-white/40 text-sm">+91 94117 17651</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-base leading-none mt-0.5">📧</span>
-                <span className="text-white/40 text-sm break-all">info@harjashostel.com</span>
+                <span className="text-white/40 text-sm break-all">saravjeetsangeeta@gmail.com</span>
               </li>
               <li className="flex items-start gap-2.5">
                 <span className="text-base leading-none mt-0.5">📍</span>
@@ -160,7 +160,7 @@ export default function Footer() {
 
             {/* WhatsApp CTA */}
             <a
-              href="https://wa.me/91XXXXXXXXXX?text=Hi, I'm interested in Harjas Hostel"
+              href="https://wa.me/+917983366239?text=Hi, I'm interested in Harjas Hostel"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-5 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#25D366]/15 hover:bg-[#25D366]/25 border border-[#25D366]/30 text-[#25D366] text-sm font-semibold transition-all duration-300"

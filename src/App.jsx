@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Amenities from './components/Amenities';
 import Gallery from './components/Gallery';
+import VideoShowcase from './components/VideoShowcase';
 import Locations from './components/Locations';
 import Reviews from './components/Reviews';
 import Contact from './components/Contact';
@@ -18,6 +19,7 @@ function App() {
         <Hero />
         <Amenities />
         <Gallery />
+        <VideoShowcase />
         <Locations />
         <Reviews />
         <Contact />

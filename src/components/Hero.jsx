@@ -101,7 +101,7 @@ export default function Hero() {
             <ChevronDown size={18} className="rotate-[-90deg]" />
           </button>
           <a
-            href="https://wa.me/91XXXXXXXXXX?text=Hi, I'm interested in Harjas Hostel"
+            href="https://wa.me/+917983366239?text=Hi, I'm interested in Harjas Hostel"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-outline border-gold text-white text-base group"

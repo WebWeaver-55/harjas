@@ -28,7 +28,7 @@ export default function WhatsAppButton() {
           className="fixed bottom-20 right-4 sm:bottom-8 sm:right-6 z-[999]"
         >
           <a
-            href="https://wa.me/91XXXXXXXXXX?text=Hi%2C%20I%27m%20interested%20in%20Harjas%20Hostel"
+            href="https://wa.me/+917983366239?text=Hi%2C%20I%27m%20interested%20in%20Harjas%20Hostel"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat with us on WhatsApp"

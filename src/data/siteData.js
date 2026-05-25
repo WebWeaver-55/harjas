@@ -1,25 +1,22 @@
 // Hero slideshow images (Unsplash)
 export const heroSlides = [
   {
-    url: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=1920&q=80',
+    url: '../../images/building1/img-11.jpeg',
     alt: 'Modern hostel room with comfortable beds',
   },
   {
-    url: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=1920&q=80',
+    url: '../../images/building2/img11.jpeg',
     alt: 'Cozy study lounge and common area',
   },
   {
-    url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80',
+    url: '../../images/building3/img-4.jpeg',
     alt: 'Modern hostel building exterior',
   },
   {
-    url: 'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=1920&q=80',
+    url: '../../images/building4/img-5.jpeg',
     alt: 'Clean dining and mess area',
   },
-  {
-    url: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1920&q=80',
-    alt: 'Beautiful rooftop and garden area',
-  },
+ 
 ];
 
 // Room data

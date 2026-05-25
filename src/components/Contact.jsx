@@ -299,7 +299,7 @@ export default function Contact() {
             </div>
 
             <a
-              href="https://wa.me/91XXXXXXXXXX?text=Hi, I'm interested in Harjas Hostel"
+              href="https://wa.me/+917983366239?text=Hi, I'm interested in Harjas Hostel"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-[#25D366] hover:bg-[#20BD5A] text-white font-semibold transition-all duration-300"
