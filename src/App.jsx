@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Amenities from './components/Amenities';
 import Gallery from './components/Gallery';
-import VideoShowcase from './components/VideoShowcase';
+import VideoShowcase from './components/Videoshowcase';
 import Locations from './components/Locations';
 import Reviews from './components/Reviews';
 import Contact from './components/Contact';
