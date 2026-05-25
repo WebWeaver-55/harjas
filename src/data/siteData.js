@@ -223,5 +223,5 @@ export const trustStats = [
   { value: '500+', label: 'Students Housed' },
   { value: '4.9★', label: 'Average Rating' },
   { value: '3+', label: 'Years of Trust' },
-  { value: '2', label: 'Hostel Locations' },
+  { value: '7', label: 'Hostel Locations' },
 ];
