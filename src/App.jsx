@@ -1,7 +1,6 @@
 import LoadingScreen from './components/LoadingScreen';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Rooms from './components/Rooms';
 import Amenities from './components/Amenities';
 import Gallery from './components/Gallery';
 import Locations from './components/Locations';
@@ -17,7 +16,6 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <Rooms />
         <Amenities />
         <Gallery />
         <Locations />

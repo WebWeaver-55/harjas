@@ -92,16 +92,59 @@ export const roomsData = {
 
 // Amenities
 export const amenitiesData = [
-  { icon: 'Wifi', name: 'High-Speed WiFi', desc: 'Fiber broadband in every room' },
-  { icon: 'Shirt', name: 'Laundry Service', desc: 'In-house washing facilities' },
-  { icon: 'Camera', name: 'CCTV Security', desc: '24/7 surveillance & security' },
-  { icon: 'UtensilsCrossed', name: 'Mess Facility', desc: 'Hygienic home-cooked meals' },
-  { icon: 'BookOpen', name: 'Study Lounge', desc: 'Dedicated quiet study space' },
-  { icon: 'Zap', name: 'Power Backup', desc: '24/7 uninterrupted power' },
-  { icon: 'Droplets', name: 'RO Purified Water', desc: 'Clean drinking water always' },
-  { icon: 'Sparkles', name: 'Housekeeping', desc: 'Regular room cleaning' },
-  { icon: 'Car', name: 'Parking', desc: 'Two-wheeler parking available' },
-  { icon: 'ShowerHead', name: 'Hot Water', desc: 'Geyser in every bathroom' },
+  {
+    icon: 'Wifi',
+    name: 'High-Speed WiFi',
+    desc: 'Fiber broadband in every room'
+  },
+
+  {
+    icon: 'Shirt',
+    name: 'Laundry Service',
+    desc: 'In-house washing facilities'
+  },
+
+  {
+    icon: 'Camera',
+    name: 'CCTV Security',
+    desc: '24/7 surveillance & security'
+  },
+
+  {
+    icon: 'UtensilsCrossed',
+    name: 'Mess Facility',
+    desc: 'Hygienic home-cooked meals'
+  },
+
+  {
+    icon: 'Zap',
+    name: 'Power Backup',
+    desc: '24/7 uninterrupted power'
+  },
+
+  {
+    icon: 'Droplets',
+    name: 'RO Purified Water',
+    desc: 'Clean drinking water always'
+  },
+
+  {
+    icon: 'Sparkles',
+    name: 'Housekeeping',
+    desc: 'Regular room cleaning'
+  },
+
+  {
+    icon: 'Bus',
+    name: 'Pick & Drop Facility',
+    desc: 'Convenient transport service for students'
+  },
+
+  {
+    icon: 'ShowerHead',
+    name: 'Hot Water',
+    desc: 'Geyser in every bathroom'
+  }
 ];
 
 // Gallery images
