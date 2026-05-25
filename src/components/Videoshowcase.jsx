@@ -121,7 +121,7 @@ export default function VideoShowcase() {
               If you have a WebM version add it above the mp4 as a <source> —
               WebM is ~30% smaller at the same quality.
             */}
-            <source src="../../videos/harjas-tour.mp4" type="video/mp4" />
+            <source src="https://res.cloudinary.com/dcl9muhaa/video/upload/q_auto/f_auto/v1779741099/harjas-tour_jsfmvh.mp4" type="video/mp4" />
             Your browser does not support HTML5 video.
           </video>
 
