@@ -14,7 +14,9 @@ const buildings = [
       { src: '../../images/building1/img-6.jpeg', alt: 'Building 1 - Dining' },
       { src: '../../images/building1/img-3.jpeg', alt: 'Building 1 - Single Room' },
       { src: '../../images/building1/img-7.jpeg', alt: 'Building 1 - Study Hall' },
+      { src: '../../images/building1/img-1.jpeg', alt: 'Building 1 - Study Hall' },
       { src: '../../images/building1/img-4.jpeg', alt: 'Building 1 - Exterior' },
+      { src: '../../images/building1/imgr-1.jpeg', alt: 'Building 1 - Exterior' },
     ],
   },
   {
@@ -27,8 +29,10 @@ const buildings = [
       { src: '../../images/building2/img-6.jpeg', alt: 'Building 2 - Kitchen' },
       { src: '../../images/building2/img-7.jpeg', alt: 'Building 2 - Terrace' },
       { src: '../../images/building2/img-2.jpeg', alt: 'Building 2 - Exterior' },
+      { src: '../../images/building2/img-5.jpeg', alt: 'Building 2 - Exterior' },
       { src: '../../images/building2/img-3.jpeg', alt: 'Building 2 - Twin Room' },
       { src: '../../images/building2/img-4.jpeg', alt: 'Building 2 - Corridor' },
+      { src: '../../images/building2/imgr-2.jpeg', alt: 'Building 2 - Corridor' },
     ],
   },
   {
@@ -41,6 +45,7 @@ const buildings = [
       { src: '../../images/building3/img-3.jpeg', alt: 'Building 3 - Dining' },
       { src: '../../images/building3/img-1.jpeg', alt: 'Building 3 - Study Area' },
       { src: '../../images/building3/img-2.jpeg', alt: 'Building 3 - Exterior' },
+      { src: '../../images/building3/imgr-3.jpeg', alt: 'Building 3 - Exterior' },
     ],
   },
   {
