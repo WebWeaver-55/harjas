@@ -7,7 +7,7 @@ const buildings = [
   {
     id: 'b1',
     name: 'Building 1',
-    label: 'Boys Hostel',
+    label: 'Girls Hostel',
     images: [
       { src: '../../images/building1/img-11.jpeg', alt: 'Building 1 - Room 1' },
       { src: '../../images/building1/img-5.jpeg', alt: 'Building 1 - Common Area' },
@@ -22,7 +22,7 @@ const buildings = [
   {
     id: 'b2',
     name: 'Building 2',
-    label: 'Boys Hostel',
+    label: 'Girls Hostel',
     images: [
       { src: '../../images/building2/img11.jpeg', alt: 'Building 2 - Room' },
       { src: '../../images/building2/img-1.jpeg', alt: 'Building 2 - Lounge' },
