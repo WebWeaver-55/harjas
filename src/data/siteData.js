@@ -222,6 +222,6 @@ export const reviewsData = [
 export const trustStats = [
   { value: '500+', label: 'Students Housed' },
   { value: '4.9★', label: 'Average Rating' },
-  { value: '3+', label: 'Years of Trust' },
+  { value: '6+', label: 'Years of Trust' },
   { value: '7', label: 'Hostel Locations' },
 ];

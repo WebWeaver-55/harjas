@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MapPin, ArrowRight, Phone } from 'lucide-react';
+import { MapPin, ArrowRight } from 'lucide-react';
 
 function scrollToSection(id) {
   const el = document.getElementById(id);
@@ -9,80 +9,83 @@ function scrollToSection(id) {
   }
 }
 
-// All 7 locations in Bidholi area — update names/details as needed
 const locations = [
+  // Bidholi village — 2 girls
   {
     id: 1,
-    name: 'Harjas Hostel — Block A',
-    address: 'Near UPES Main Gate, Bidholi, Dehradun',
-    type: 'Boys & Girls',
-    rooms: '120+ Rooms',
-    distance: '2 min walk',
+    name: 'Harjas Hostel — Bidholi 1',
+    address: 'Bidholi Village, Dehradun, Uttarakhand',
+    type: 'Girls',
     isMain: true,
   },
   {
     id: 2,
-    name: 'Harjas Hostel — Block B',
-    address: 'Bidholi Village Road, Dehradun',
-    type: 'Boys',
-    rooms: '80+ Rooms',
-    distance: '3 min walk',
+    name: 'Harjas Hostel — Bidholi 2',
+    address: 'Bidholi Village, Dehradun, Uttarakhand',
+    type: 'Girls',
     isMain: false,
   },
+  // Bidholi Chowk, Maggi Point Road — 1 girls
   {
     id: 3,
-    name: 'Harjas Hostel — Block C',
-    address: 'Lane 3, Bidholi, Near UPES Back Gate',
+    name: 'Harjas Hostel — Chowk',
+    address: 'Bidholi Chowk, Maggi Point Road, Dehradun',
     type: 'Girls',
-    rooms: '60+ Rooms',
-    distance: '4 min walk',
     isMain: false,
   },
+  // 32 Bigha, 1st Lane — 1 girls
   {
     id: 4,
-    name: 'Harjas Hostel — Block D',
-    address: 'Bidholi Chowk, Dehradun, Uttarakhand',
-    type: 'Boys & Girls',
-    rooms: '100+ Rooms',
-    distance: '5 min walk',
+    name: 'Harjas Hostel — 32 Bigha Lane 1',
+    address: '32 Bigha, 1st Lane, Bidholi, Dehradun',
+    type: 'Girls',
     isMain: false,
   },
+  // 32 Bigha, 2nd Lane — 3 boys, 1 girl (4 total)
   {
     id: 5,
-    name: 'Harjas Hostel — Block E',
-    address: 'Upper Bidholi, Dehradun, Uttarakhand',
+    name: 'Harjas Hostel — 32 Bigha Lane 2A',
+    address: '32 Bigha, 2nd Lane, Bidholi, Dehradun',
     type: 'Boys',
-    rooms: '70+ Rooms',
-    distance: '6 min walk',
     isMain: false,
   },
   {
     id: 6,
-    name: 'Harjas Hostel — Block F',
-    address: 'Bidholi Main Road, Dehradun — 248007',
-    type: 'Girls',
-    rooms: '55+ Rooms',
-    distance: '7 min walk',
+    name: 'Harjas Hostel — 32 Bigha Lane 2B',
+    address: '32 Bigha, 2nd Lane, Bidholi, Dehradun',
+    type: 'Boys',
     isMain: false,
   },
   {
     id: 7,
-    name: 'Harjas Hostel — Block G',
-    address: 'Near Bidholi Temple, Dehradun, Uttarakhand',
-    type: 'Boys & Girls',
-    rooms: '90+ Rooms',
-    distance: '5 min walk',
+    name: 'Harjas Hostel — 32 Bigha Lane 2C',
+    address: '32 Bigha, 2nd Lane, Bidholi, Dehradun',
+    type: 'Boys',
+    isMain: false,
+  },
+  {
+    id: 8,
+    name: 'Harjas Hostel — 32 Bigha Lane 2D',
+    address: '32 Bigha, 2nd Lane, Bidholi, Dehradun',
+    type: 'Girls',
+    isMain: false,
+  },
+  // 32 Bigha, 3rd Lane — 1 girl
+  {
+    id: 9,
+    name: 'Harjas Hostel — 32 Bigha Lane 3',
+    address: '32 Bigha, 3rd Lane, Bidholi, Dehradun',
+    type: 'Girls',
     isMain: false,
   },
 ];
 
-const typeColors = {
-  'Boys': 'bg-blue-50 text-blue-700 border-blue-200',
-  'Girls': 'bg-pink-50 text-pink-700 border-pink-200',
-  'Boys & Girls': 'bg-purple-50 text-purple-700 border-purple-200',
-};
-
 function LocationCard({ loc, index }) {
+  const typeStyle = {
+    Boys:   'bg-blue-50 text-blue-700 border-blue-200',
+    Girls:  'bg-pink-50 text-pink-700 border-pink-200',
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -95,14 +98,12 @@ function LocationCard({ loc, index }) {
           : 'bg-white/5 border-white/10 hover:border-white/25 hover:bg-white/8'
         }`}
     >
-      {/* Main badge */}
       {loc.isMain && (
         <span className="absolute -top-3 left-5 px-3 py-1 rounded-full text-xs font-bold bg-gold text-teal-primary shadow-md">
           ★ Main Campus
         </span>
       )}
 
-      {/* Header row */}
       <div className="flex items-start justify-between gap-3 mb-4">
         <div className="flex-1 min-w-0">
           <h3 className={`font-display font-bold text-lg leading-tight mb-1 transition-colors duration-300
@@ -116,20 +117,13 @@ function LocationCard({ loc, index }) {
         </div>
       </div>
 
-      {/* Info chips */}
+      {/* Gender tag */}
       <div className="flex flex-wrap gap-2 mb-5">
-        <span className="px-3 py-1 rounded-full text-xs font-semibold border bg-white/8 text-white/70 border-white/15">
+        <span className={`px-3 py-1 rounded-full text-xs font-semibold border ${typeStyle[loc.type]}`}>
           {loc.type}
-        </span>
-        <span className="px-3 py-1 rounded-full text-xs font-semibold border bg-gold/10 text-gold border-gold/20">
-          {loc.rooms}
-        </span>
-        <span className="px-3 py-1 rounded-full text-xs font-semibold border bg-white/5 text-white/50 border-white/10">
-          {loc.distance} from UPES
         </span>
       </div>
 
-      {/* CTA */}
       <button
         onClick={() => scrollToSection('contact')}
         className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300
@@ -148,26 +142,23 @@ function LocationCard({ loc, index }) {
 export default function Locations() {
   return (
     <section id="locations" className="section-padding bg-teal-primary relative overflow-hidden">
-      {/* Subtle bg decoration — no blur-3xl (perf) */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-gold/4 rounded-full pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-gold/3 rounded-full pointer-events-none" />
 
       <div className="container-custom relative z-10">
-        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-14"
         >
-          {/* Eyebrow */}
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/25 text-gold text-sm font-medium mb-5">
             <MapPin size={14} />
             All in Bidholi, Dehradun
           </span>
 
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-            7 Hostels,{' '}
+            9 Hostels,{' '}
             <span className="gradient-text">One Neighbourhood</span>
           </h2>
           <p className="text-white/50 text-lg max-w-2xl mx-auto">
@@ -183,9 +174,9 @@ export default function Locations() {
           className="grid grid-cols-3 gap-4 mb-12 max-w-xl mx-auto"
         >
           {[
-            { value: '7', label: 'Blocks' },
-            { value: '575+', label: 'Total Rooms' },
-            { value: '2–7', label: 'Min from UPES' },
+            { value: '9', label: 'Hostels' },
+            { value: '6', label: 'Girls Hostels' },
+            { value: '3', label: 'Boys Hostels' },
           ].map((s) => (
             <div key={s.label} className="text-center p-4 rounded-xl bg-white/5 border border-white/10">
               <p className="font-display text-2xl font-bold text-gold">{s.value}</p>
@@ -195,20 +186,19 @@ export default function Locations() {
         </motion.div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {locations.map((loc, i) => (
             <LocationCard key={loc.id} loc={loc} index={i} />
           ))}
         </div>
 
-        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <p className="text-white/40 text-sm mb-4">Not sure which block to pick?</p>
+          <p className="text-white/40 text-sm mb-4">Not sure which hostel to pick?</p>
           <button
             onClick={() => scrollToSection('contact')}
             className="btn-primary"

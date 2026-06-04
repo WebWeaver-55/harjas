@@ -2,42 +2,26 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Play, Pause, Volume2, VolumeX, Maximize2 } from 'lucide-react';
 
-const VIDEOS = [
-  {
-    src: 'https://res.cloudinary.com/dcl9muhaa/video/upload/q_auto/f_auto/v1779741099/harjas-tour_jsfmvh.mp4',
-    poster: '../../images/video-poster.jpg',
-    label: 'Full Tour',
-    caption: 'Walk through every room & common space',
-  },
-  {
-    src: 'https://res.cloudinary.com/dcl9muhaa/video/upload/q_auto/f_auto/v1779741099/harjas-tour_jsfmvh.mp4',
-    poster: '../../images/video-poster-2.jpg',
-    label: 'Rooms',
-    caption: 'Cozy beds, clean linens, ample storage',
-  },
-  {
-    src: 'https://res.cloudinary.com/dcl9muhaa/video/upload/q_auto/f_auto/v1779741099/harjas-tour_jsfmvh.mp4',
-    poster: '../../images/video-poster-3.jpg',
-    label: 'Facilities',
-    caption: 'Kitchen, bathrooms & lounge areas',
-  },
-];
+const VIDEO = {
+  src: 'https://res.cloudinary.com/dcl9muhaa/video/upload/q_auto/f_auto/v1779741099/harjas-tour_jsfmvh.mp4',
+  label: 'Full Tour',
+  caption: 'Walk through every room & common space',
+};
 
-function VideoCard({ video, index }) {
-  const videoRef    = useRef(null);
-  const cardRef     = useRef(null);
-  const [ready, setReady]       = useState(false);
-  const [playing, setPlaying]   = useState(false);
-  const [muted, setMuted]       = useState(true);
-  const [progress, setProgress] = useState(0);
-  const [loaded, setLoaded]     = useState(false);
+function VideoCard({ video }) {
+  const videoRef  = useRef(null);
+  const cardRef   = useRef(null);
+  const [ready, setReady]     = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [muted, setMuted]     = useState(true);
+  const [loaded, setLoaded]   = useState(false);
 
-  /* ensure video element is muted on mount (React doesn't reliably set the muted attribute) */
+  /* ensure muted attribute is set on mount */
   useEffect(() => {
     if (videoRef.current) videoRef.current.muted = true;
   }, []);
 
-  /* lazy-load: switch preload mode when card enters viewport */
+  /* lazy-load when card enters viewport */
   useEffect(() => {
     const el = cardRef.current;
     if (!el) return;
@@ -53,15 +37,6 @@ function VideoCard({ video, index }) {
     obs.observe(el);
     return () => obs.disconnect();
   }, [loaded]);
-
-  /* progress bar */
-  useEffect(() => {
-    const vid = videoRef.current;
-    if (!vid) return;
-    const onTime = () => setProgress((vid.currentTime / vid.duration) * 100 || 0);
-    vid.addEventListener('timeupdate', onTime);
-    return () => vid.removeEventListener('timeupdate', onTime);
-  }, []);
 
   const togglePlay = () => {
     const vid = videoRef.current;
@@ -90,43 +65,36 @@ function VideoCard({ video, index }) {
     else if (vid.webkitEnterFullscreen) vid.webkitEnterFullscreen();
   };
 
-  const seekTo = (e) => {
-    const vid = videoRef.current;
-    if (!vid || !vid.duration) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const pct  = (e.clientX - rect.left) / rect.width;
-    vid.currentTime = pct * vid.duration;
-    setProgress(pct * 100);
-  };
-
   return (
     <motion.div
       ref={cardRef}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
+      transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="flex flex-col"
+      className="flex flex-col items-center"
     >
       {/* label */}
-      <p className="text-gold font-semibold text-xs uppercase tracking-widest mb-2">
+      <p className="text-gold font-semibold text-xs uppercase tracking-widest mb-2 self-start">
         {video.label}
       </p>
 
-      {/* portrait player — 9:16 ratio */}
-      <div className="relative rounded-xl overflow-hidden shadow-xl bg-black" style={{ aspectRatio: '9/16' }}>
+      {/* portrait player — 9:16, max-width constrained for laptop */}
+      <div
+        className="relative rounded-xl overflow-hidden shadow-xl bg-black w-full"
+        style={{ aspectRatio: '9/16', maxWidth: '280px' }}
+      >
         <video
           ref={videoRef}
           className="w-full h-full object-cover block"
-          poster={video.poster}
+          /* #t=0.001 loads the first frame as a thumbnail without autoplay */
+          src={`${video.src}#t=0.001`}
           preload="none"
           playsInline
           loop
           onEnded={() => setPlaying(false)}
           onCanPlay={() => setReady(true)}
-        >
-          <source src={video.src} type="video/mp4" />
-        </video>
+        />
 
         {/* big play overlay */}
         {!playing && (
@@ -140,34 +108,31 @@ function VideoCard({ video, index }) {
           </div>
         )}
 
-        {/* controls bar */}
+        {/* controls bar — play/pause, mute, fullscreen only (no seek bar) */}
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent px-3 pb-3 pt-8">
-          <div
-            className="w-full h-1 bg-white/20 rounded-full mb-2 cursor-pointer group"
-            onClick={seekTo}
-          >
-            <div
-              className="h-full bg-gold rounded-full relative transition-all duration-100"
-              style={{ width: `${progress}%` }}
-            >
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-gold opacity-0 group-hover:opacity-100 transition-opacity" />
-            </div>
-          </div>
-
           <div className="flex items-center gap-2">
-            <button onClick={togglePlay} aria-label={playing ? 'Pause' : 'Play'}
-              className="w-7 h-7 flex items-center justify-center text-white hover:text-gold transition-colors">
+            <button
+              onClick={togglePlay}
+              aria-label={playing ? 'Pause' : 'Play'}
+              className="w-7 h-7 flex items-center justify-center text-white hover:text-gold transition-colors"
+            >
               {playing
                 ? <Pause size={16} fill="currentColor" />
                 : <Play size={16} fill="currentColor" className="ml-0.5" />}
             </button>
-            <button onClick={toggleMute} aria-label={muted ? 'Unmute' : 'Mute'}
-              className="w-7 h-7 flex items-center justify-center text-white hover:text-gold transition-colors">
+            <button
+              onClick={toggleMute}
+              aria-label={muted ? 'Unmute' : 'Mute'}
+              className="w-7 h-7 flex items-center justify-center text-white hover:text-gold transition-colors"
+            >
               {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
             </button>
             <div className="flex-1" />
-            <button onClick={openFullscreen} aria-label="Fullscreen"
-              className="w-7 h-7 flex items-center justify-center text-white hover:text-gold transition-colors">
+            <button
+              onClick={openFullscreen}
+              aria-label="Fullscreen"
+              className="w-7 h-7 flex items-center justify-center text-white hover:text-gold transition-colors"
+            >
               <Maximize2 size={14} />
             </button>
           </div>
@@ -182,7 +147,7 @@ function VideoCard({ video, index }) {
       </div>
 
       {/* caption */}
-      <p className="text-white/40 text-xs mt-2">{video.caption}</p>
+      <p className="text-white/40 text-xs mt-2 self-start">{video.caption}</p>
     </motion.div>
   );
 }
@@ -206,15 +171,13 @@ export default function VideoShowcase() {
           </p>
         </motion.div>
 
-        {/* mobile: 1 col  |  md+: 3 col side by side */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {VIDEOS.map((vid, i) => (
-            <VideoCard key={i} video={vid} index={i} />
-          ))}
+        {/* centred single video */}
+        <div className="flex justify-center">
+          <VideoCard video={VIDEO} />
         </div>
 
         <p className="text-center text-white/30 text-xs mt-6">
-          HD tours · filmed on location at Harjas Hostel
+          HD tour · filmed on location at Harjas Hostel
         </p>
       </div>
     </section>
