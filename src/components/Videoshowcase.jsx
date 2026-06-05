@@ -37,26 +37,34 @@ function VideoCard({ video }) {
     return () => obs.disconnect();
   }, [loaded]);
 
-  const togglePlay = () => {
-    const vid = videoRef.current;
-    if (!vid) return;
+const togglePlay = () => {
+  const vid = videoRef.current;
+  if (!vid) return;
 
-    if (playing) {
-      vid.pause();
-      setPlaying(false);
+  if (playing) {
+    vid.pause();
+    setPlaying(false);
+  } else {
+    vid.preload = 'auto';
+
+    if (!hasPlayedRef.current) {
+      hasPlayedRef.current = true;
+      vid.src = video.src; // clean src, no #t=45
+      vid.load();
+
+      // Wait for enough data before playing
+      vid.addEventListener(
+        'canplay',
+        () => {
+          vid.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
+        },
+        { once: true } // fires only once, auto-removes itself
+      );
     } else {
-      vid.preload = 'auto';
-
-      // First play: strip #t=45 so it starts from 0:00
-      if (!hasPlayedRef.current) {
-        vid.src = video.src;   // clean src, no time fragment
-        vid.load();
-        hasPlayedRef.current = true;
-      }
-
       vid.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
     }
-  };
+  }
+};
 
   const toggleMute = () => {
     const vid = videoRef.current;
