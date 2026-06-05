@@ -15,13 +15,12 @@ function VideoCard({ video }) {
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted]     = useState(true);
   const [loaded, setLoaded]   = useState(false);
+  const hasPlayedRef = useRef(false); // ← tracks if first play happened
 
-  /* ensure muted attribute is set on mount */
   useEffect(() => {
     if (videoRef.current) videoRef.current.muted = true;
   }, []);
 
-  /* lazy-load when card enters viewport */
   useEffect(() => {
     const el = cardRef.current;
     if (!el) return;
@@ -41,11 +40,20 @@ function VideoCard({ video }) {
   const togglePlay = () => {
     const vid = videoRef.current;
     if (!vid) return;
-    vid.preload = 'auto';
+
     if (playing) {
       vid.pause();
       setPlaying(false);
     } else {
+      vid.preload = 'auto';
+
+      // First play: strip #t=45 so it starts from 0:00
+      if (!hasPlayedRef.current) {
+        vid.src = video.src;   // clean src, no time fragment
+        vid.load();
+        hasPlayedRef.current = true;
+      }
+
       vid.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
     }
   };
@@ -74,12 +82,10 @@ function VideoCard({ video }) {
       viewport={{ once: true }}
       className="flex flex-col items-center"
     >
-      {/* label */}
       <p className="text-gold font-semibold text-xs uppercase tracking-widest mb-2 self-start">
         {video.label}
       </p>
 
-      {/* portrait player — 9:16, max-width constrained for laptop */}
       <div
         className="relative rounded-xl overflow-hidden shadow-xl bg-black w-full"
         style={{ aspectRatio: '9/16', maxWidth: '280px' }}
@@ -87,16 +93,14 @@ function VideoCard({ video }) {
         <video
           ref={videoRef}
           className="w-full h-full object-cover block"
-          /* #t=0.001 loads the first frame as a thumbnail without autoplay */
-          src={`${video.src}#t=0.001`}
-          preload="none"
+          src={`${video.src}#t=45`}   // thumbnail at 45s
+          preload="metadata"
           playsInline
           loop
           onEnded={() => setPlaying(false)}
           onCanPlay={() => setReady(true)}
         />
 
-        {/* big play overlay */}
         {!playing && (
           <div
             className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer"
@@ -108,7 +112,6 @@ function VideoCard({ video }) {
           </div>
         )}
 
-        {/* controls bar — play/pause, mute, fullscreen only (no seek bar) */}
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent px-3 pb-3 pt-8">
           <div className="flex items-center gap-2">
             <button
@@ -138,7 +141,6 @@ function VideoCard({ video }) {
           </div>
         </div>
 
-        {/* loading spinner */}
         {loaded && !ready && (
           <div className="absolute inset-0 bg-black/60 flex items-center justify-center pointer-events-none">
             <div className="w-8 h-8 border-2 border-white/20 border-t-gold rounded-full animate-spin" />
@@ -146,7 +148,6 @@ function VideoCard({ video }) {
         )}
       </div>
 
-      {/* caption */}
       <p className="text-white/40 text-xs mt-2 self-start">{video.caption}</p>
     </motion.div>
   );
@@ -156,7 +157,6 @@ export default function VideoShowcase() {
   return (
     <section id="video-tour" className="section-padding bg-teal-primary">
       <div className="container-custom">
-
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -171,7 +171,6 @@ export default function VideoShowcase() {
           </p>
         </motion.div>
 
-        {/* centred single video */}
         <div className="flex justify-center">
           <VideoCard video={VIDEO} />
         </div>
