@@ -48,10 +48,10 @@ const roomLinks = [
 ];
 
 const socialLinks = [
-  { icon: InstagramIcon, href: '#', label: 'Instagram' },
-  { icon: FacebookIcon, href: '#', label: 'Facebook' },
-  { icon: YoutubeIcon, href: '#', label: 'YouTube' },
-  { icon: MessageCircle, href: 'https://wa.me/+917983366239', label: 'WhatsApp' },
+  // { icon: InstagramIcon, href: '#', label: 'Instagram' },
+  // { icon: FacebookIcon, href: '#', label: 'Facebook' },
+  // { icon: YoutubeIcon, href: '#', label: 'YouTube' },
+  // { icon: MessageCircle, href: 'https://wa.me/+917983366239', label: 'WhatsApp' },
 ];
 
 export default function Footer() {

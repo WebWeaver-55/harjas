@@ -94,7 +94,7 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4"
         >
           <button
-            onClick={() => scrollToSection('rooms')}
+            onClick={() => scrollToSection('gallery')}
             className="btn-primary text-base"
           >
             Explore Rooms
